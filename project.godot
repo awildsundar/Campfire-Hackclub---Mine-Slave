@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="campfire hackclub"
-run/main_scene="uid://cytyhjuyawac6"
+run/main_scene="uid://da1s62h6fvgxq"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/progress_bar_3d/plugin.cfg")
 
 [input]
 

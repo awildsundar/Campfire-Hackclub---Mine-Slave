@@ -1,10 +1,11 @@
 extends CharacterBody3D
 class_name Player
 
-@export var speed := 5.0
-@export var strength := 50.0
-
 @onready var raycast: RayCast3D = $CameraController/Camera3D/RayCast3D
+@onready var animation: Sprite2D = $Sprite2D
+
+var speed : float = 5.0
+var strength : float = 50.0
 
 var ore: int = 0
 var money: float = 0.0
@@ -16,6 +17,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().quit()
 	elif event.is_action_pressed("interact"):
 		interact()
+
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 

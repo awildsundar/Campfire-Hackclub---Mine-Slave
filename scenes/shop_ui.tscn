@@ -1,8 +1,21 @@
 [gd_scene format=3 uid="uid://u2y5f13sq4p1"]
 
 [ext_resource type="Script" uid="uid://bvwjkjq5k1hlf" path="res://scripts/ShopUI.gd" id="1_fs6yy"]
+[ext_resource type="FontFile" uid="uid://bgyfdxw8fnhuf" path="res://assets/fonts/MonasDemoRegular-eZl86.ttf" id="2_bidp2"]
+[ext_resource type="PackedScene" uid="uid://blqsnxsoi104q" path="res://scenes/ShopButton.tscn" id="2_oixfk"]
+[ext_resource type="Texture2D" uid="uid://d1e5ss0qb03ia" path="res://assets/images/pick 1.png" id="3_t3xdf"]
+[ext_resource type="Texture2D" uid="uid://dvtorn2omwm3r" path="res://assets/images/level 1 speed.png" id="3_usj2y"]
+[ext_resource type="Texture2D" uid="uid://dc5clq0n5g84q" path="res://assets/images/pick 2.png" id="4_0yw5g"]
+[ext_resource type="Texture2D" uid="uid://dhsfrt0hr0pbn" path="res://assets/images/level 2 speed.png" id="4_bidp2"]
+[ext_resource type="Texture2D" uid="uid://chvp50onl5or1" path="res://assets/images/level 3 speed.png" id="5_obwu6"]
+[ext_resource type="Texture2D" uid="uid://b52dujp05lofw" path="res://assets/images/pick 3.png" id="5_s287r"]
+[ext_resource type="Texture2D" uid="uid://0wvddxx4jn81" path="res://assets/images/level 4 speed.png" id="6_t3xdf"]
+[ext_resource type="Texture2D" uid="uid://8uu4dlcr26ro" path="res://assets/images/pick 4.png" id="11_s287r"]
 
-[node name="Control" type="Control" unique_id=1502416305]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oixfk"]
+bg_color = Color(0.45340794, 0.4400317, 0.22599566, 1)
+
+[node name="Control" type="Control" unique_id=1502416305 node_paths=PackedStringArray("money_display")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fs6yy")
+money_display = NodePath("MarginContainer/Panel/VBoxContainer/Info/Label")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=945535401]
 layout_mode = 1
@@ -25,26 +39,123 @@ theme_override_constants/margin_bottom = 50
 
 [node name="Panel" type="Panel" parent="MarginContainer" unique_id=1214442918]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oixfk")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1735267502]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel" unique_id=878359391]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/VBoxContainer" unique_id=1520703020]
 layout_mode = 2
 
-[node name="Exit" type="Button" parent="MarginContainer/HBoxContainer" unique_id=2037893276]
-layout_mode = 2
-theme_override_font_sizes/font_size = 243
-text = "X"
-
-[node name="Money" type="Label" parent="MarginContainer/HBoxContainer" unique_id=817987987]
+[node name="Brand" type="Label" parent="MarginContainer/Panel/VBoxContainer/HBoxContainer" unique_id=1295120269]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 111
-text = "$1000000"
+theme_override_constants/line_spacing = -53
+theme_override_fonts/font = ExtResource("2_bidp2")
+theme_override_font_sizes/font_size = 85
+text = "
+LiveD"
 horizontal_alignment = 1
 
-[node name="Convert" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1054601245]
+[node name="Exit" type="Button" parent="MarginContainer/Panel/VBoxContainer/HBoxContainer" unique_id=602077930]
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "change money"
+theme_override_font_sizes/font_size = 50
+text = "exit"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Exit" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Convert" to="." method="_on_convert_pressed"]
+[node name="Speed" type="Label" parent="MarginContainer/Panel/VBoxContainer" unique_id=1916180029]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bidp2")
+theme_override_font_sizes/font_size = 60
+text = "Speed"
+
+[node name="Speed Options" type="HBoxContainer" parent="MarginContainer/Panel/VBoxContainer" unique_id=2018571184]
+layout_mode = 2
+
+[node name="Panel" parent="MarginContainer/Panel/VBoxContainer/Speed Options" unique_id=221218958 instance=ExtResource("2_oixfk")]
+layout_mode = 2
+icon = ExtResource("3_usj2y")
+item_type = "SPEED"
+price = 150.0
+value = 5.0
+
+[node name="Panel2" parent="MarginContainer/Panel/VBoxContainer/Speed Options" unique_id=311597210 instance=ExtResource("2_oixfk")]
+layout_mode = 2
+icon = ExtResource("4_bidp2")
+item_type = "SPEED"
+price = 200.0
+value = 2.0
+
+[node name="Panel3" parent="MarginContainer/Panel/VBoxContainer/Speed Options" unique_id=994677691 instance=ExtResource("2_oixfk")]
+layout_mode = 2
+icon = ExtResource("5_obwu6")
+item_type = "SPEED"
+price = 250.0
+value = 2.5
+
+[node name="Panel4" parent="MarginContainer/Panel/VBoxContainer/Speed Options" unique_id=1372021822 instance=ExtResource("2_oixfk")]
+layout_mode = 2
+icon = ExtResource("6_t3xdf")
+item_type = "SPEED"
+price = 300.0
+value = 3.0
+
+[node name="Strength" type="Label" parent="MarginContainer/Panel/VBoxContainer" unique_id=2071537258]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bidp2")
+theme_override_font_sizes/font_size = 60
+text = "Strength"
+
+[node name="Speed Options2" type="HBoxContainer" parent="MarginContainer/Panel/VBoxContainer" unique_id=928240892]
+layout_mode = 2
+
+[node name="Panel" parent="MarginContainer/Panel/VBoxContainer/Speed Options2" unique_id=686803577 instance=ExtResource("2_oixfk")]
+layout_mode = 2
+icon = ExtResource("3_t3xdf")
+item_type = "STRENGTH"
+price = 150.0
+value = 1.5
+
+[node name="Panel2" parent="MarginContainer/Panel/VBoxContainer/Speed Options2" unique_id=1947599671 instance=ExtResource("2_oixfk")]
+layout_mode = 2
+icon = ExtResource("4_0yw5g")
+item_type = "STRENGTH"
+price = 200.0
+value = 2.0
+
+[node name="Panel3" parent="MarginContainer/Panel/VBoxContainer/Speed Options2" unique_id=215667544 instance=ExtResource("2_oixfk")]
+layout_mode = 2
+icon = ExtResource("5_s287r")
+item_type = "STRENGTH"
+price = 250.0
+value = 2.5
+
+[node name="Panel4" parent="MarginContainer/Panel/VBoxContainer/Speed Options2" unique_id=1513961412 instance=ExtResource("2_oixfk")]
+layout_mode = 2
+icon = ExtResource("11_s287r")
+item_type = "STRENGTH"
+price = 300.0
+value = 3.0
+
+[node name="Info" type="HBoxContainer" parent="MarginContainer/Panel/VBoxContainer" unique_id=1166674932]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/VBoxContainer/Info" unique_id=363702497]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "   $moneys"
+
+[node name="Convert" type="Button" parent="MarginContainer/Panel/VBoxContainer/Info" unique_id=1327769015]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 50
+text = "convert"
+
+[connection signal="pressed" from="MarginContainer/Panel/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/VBoxContainer/Info/Convert" to="." method="_on_convert_pressed"]

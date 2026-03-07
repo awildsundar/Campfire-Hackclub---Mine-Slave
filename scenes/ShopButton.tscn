@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://blqsnxsoi104q"]
+
+[ext_resource type="Script" uid="uid://c7xy615uykgdi" path="res://scripts/ShopButton.gd" id="1_yojg0"]
+[ext_resource type="Texture2D" uid="uid://8uu4dlcr26ro" path="res://assets/images/pick 4.png" id="2_yojg0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yojg0"]
+bg_color = Color(0.13155001, 0.19186041, 0.049824752, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[node name="VBoxContainer" type="VBoxContainer" unique_id=686803577]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -263.5
+offset_right = 250.0
+offset_bottom = 263.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_yojg0")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2049533611]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_yojg0")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="." unique_id=909798631]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "$skibidi"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1484214920]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_yojg0")
+text = "PAY"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
