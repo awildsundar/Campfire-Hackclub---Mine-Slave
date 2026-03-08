@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dg1r4bx8ebdl7"]
+
+[ext_resource type="Script" uid="uid://cou22626iv2dq" path="res://cave generation/cave_gen.gd" id="1_4vcus"]
+[ext_resource type="PackedScene" uid="uid://cgq4w77aohpt" path="res://scenes/ore.tscn" id="2_q0ukh"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" unique_id=40664339]
+script = ExtResource("1_4vcus")
+room_amount = 10
+min_room_size = 5
+max_room_size = 50
+mesh_resolution = 8
+ore_scene = ExtResource("2_q0ukh")
+ore_amount = 100
