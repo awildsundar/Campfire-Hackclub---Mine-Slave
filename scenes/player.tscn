@@ -2,15 +2,11 @@
 
 [ext_resource type="Script" uid="uid://jyblxmprd3gw" path="res://scripts/Player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://3raisyjt3sy5" path="res://scripts/Camera.gd" id="2_g2els"]
-[ext_resource type="Texture2D" uid="uid://baq3x4dn3k4pt" path="res://assets/images/frame_0_delay-0.2s.png" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://ivrem62aodba" path="res://assets/animatinos/default.tres" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_tuyoq"]
-frame_0/texture = ExtResource("3_tuyoq")
-frame_0/duration = 0.1
 
 [node name="Player" type="CharacterBody3D" unique_id=1006066165]
 script = ExtResource("1_3vyb7")
@@ -34,6 +30,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
 target_position = Vector3(0, 0, -5)
 collide_with_areas = true
 
+[node name="SpotLight3D" type="SpotLight3D" parent="CameraController/Camera3D" unique_id=445192563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+light_color = Color(0.8962668, 0.82743776, 0.6184723, 1)
+light_energy = 7.97
+spot_range = 20.0
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=551870364]
-texture = SubResource("AnimatedTexture_tuyoq")
+texture = ExtResource("3_qhqgy")
 centered = false
+
+[node name="Control" type="MarginContainer" parent="." unique_id=8998469]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Label" type="Label" parent="Control" unique_id=1376350525]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 75
+text = "Ores: 0"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=82407455]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

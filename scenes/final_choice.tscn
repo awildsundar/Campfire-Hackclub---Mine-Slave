@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://76cofs1ni48w"]
+
+[ext_resource type="Script" uid="uid://xaniuoyudng5" path="res://scripts/FinalChoices.gd" id="1_jjijt"]
+
+[node name="HBoxContainer" type="HBoxContainer" unique_id=1765726187]
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+script = ExtResource("1_jjijt")
+
+[node name="Button" type="Button" parent="." unique_id=365694647]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "Accept"
+
+[node name="Button2" type="Button" parent="." unique_id=987217341]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "Decline"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_pressed"]

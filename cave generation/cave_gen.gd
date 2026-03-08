@@ -3,7 +3,6 @@ extends CSGCombiner3D
 class_name CaveGenerator
 
 @export_tool_button("Generate!") var generate_button = generate_cave
-@export_tool_button("Scatter Ores") var scatter_button = scatter_ores
 
 @export_category("Cave Settings")
 @export var size: int = 100
@@ -14,10 +13,13 @@ class_name CaveGenerator
 @export var cave_material: StandardMaterial3D
 @export var ore_scene: PackedScene = preload("res://scenes/ore.tscn")
 @export var ore_amount: int = 10
+@export var shop: ShopInteractable
+@export var player: Player
 
 var cave: Array
 var connections: Array
 var cave_connections: Array
+var ore_scatter: Array
 
 func generate_cave() -> void:
 	if cave != []:
@@ -41,7 +43,8 @@ func generate_cave() -> void:
 			cave_connections.append(mesh)
 	
 	get_connecting_rooms()
-
+	scatter_ores()
+	set_locations()
 func can_place(pos: Vector3) -> bool:
 	if not cave:
 		return true
@@ -98,18 +101,31 @@ func connect_rooms(room1: CSGMesh3D, room2: CSGMesh3D) -> void:
 	connections.append(mesh2)
 
 func scatter_ores() -> void:
+	if ore_scatter != []:
+			for i in ore_scatter:
+				i.queue_free()
+			ore_scatter.clear()
+	
 	for i in ore_amount:
 		var ore = ore_scene.instantiate()
 		var random_room = cave[randi_range(0, cave.size() - 1)]
-		var room_pos = random_room.global_position
 		var random_pos = Vector3(
-			randf_range(room_pos.x - (random_room.scale.x / 2), room_pos.x + (random_room.scale.x / 2)),
+			randf_range(random_room.global_position.x - (random_room.scale.x / 2),
+			random_room.global_position.x + (random_room.scale.x / 2)),
 			0.0,
-			randf_range(room_pos.z - (random_room.scale.z / 2), room_pos.z + (random_room.scale.z / 2))
+			randf_range(random_room.global_position.z - (random_room.scale.z / 2),
+			random_room.global_position.z + (random_room.scale.z / 2))
 		)
 		
 		ore.position = random_pos
 		add_child(ore)
+		ore_scatter.append(ore)
+
+func set_locations() -> void:
+	var room = cave_connections[randi_range(0, cave_connections.size() - 1)]
+	var rand_pos = room.global_position
+	player.global_position = Vector3(rand_pos.x, 0.0, rand_pos.z)
+	shop.global_position = player.global_position
 
 func delete_cave() -> void:
 	for i in cave:
@@ -123,3 +139,7 @@ func delete_cave() -> void:
 	for i in connections:
 		i.queue_free()
 	connections.clear()
+	
+	for i in ore_scatter:
+		i.queue_free()
+	ore_scatter.clear()

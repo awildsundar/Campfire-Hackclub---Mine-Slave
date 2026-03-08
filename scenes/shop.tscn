@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cc7p8vp1bkcy4"]
 
-[ext_resource type="Texture2D" uid="uid://50kk2ix672jn" path="res://icon.svg" id="1_lx5au"]
 [ext_resource type="Script" uid="uid://lrksbpsh1pt3" path="res://scripts/interactables/ShopInteractable.gd" id="1_xfvoa"]
 [ext_resource type="PackedScene" uid="uid://u2y5f13sq4p1" path="res://scenes/shop_ui.tscn" id="2_1l46r"]
+[ext_resource type="Texture2D" uid="uid://brapdx5f0mh6r" path="res://assets/images/ATM.png" id="3_1l46r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lx5au"]
 size = Vector3(1.5, 2, 1.5)
@@ -13,8 +13,12 @@ shop_ui_scene = ExtResource("2_1l46r")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=944668355]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+offset = Vector2(0, 50)
+modulate = Color(0.5353074, 0.69767535, 0.73578185, 1)
+pixel_size = 0.002
 billboard = 2
-texture = ExtResource("1_lx5au")
+shaded = true
+texture = ExtResource("3_1l46r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1195962617]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

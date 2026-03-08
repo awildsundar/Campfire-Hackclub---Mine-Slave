@@ -22,6 +22,6 @@ func _on_button_pressed() -> void:
 			player.strength = player.strength * value
 		"SPEED":
 			player.speed = player.speed * value
-	player.money -= price
+	owner.change_money(price, owner.ActionType.SUBTRACT)
 	button.disabled = true
 	

@@ -3,6 +3,7 @@ class_name Player
 
 @onready var raycast: RayCast3D = $CameraController/Camera3D/RayCast3D
 @onready var animation: Sprite2D = $Sprite2D
+@onready var ore_count_display: Label = $Control/Label
 
 var speed : float = 5.0
 var strength : float = 50.0
@@ -11,6 +12,10 @@ var ore: int = 0
 var money: float = 0.0
 
 var direction: Vector3
+
+func _ready() -> void:
+	animation.texture.current_frame = 0
+	animation.texture.pause = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
@@ -39,6 +44,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func interact() -> void:
+	animation.texture.current_frame = 0
+	animation.texture.pause = false
+	if animation.frame >= 3:
+		animation.texture.set_current_frame(0)
+		animation.texture.pause = true
 	if raycast.is_colliding():
 		var body: Object = raycast.get_collider()
 		if body is BaseInteractable:

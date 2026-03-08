@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c2ceafx7ayamr"]
+
+[ext_resource type="Texture2D" uid="uid://b8nlpak011lxh" path="res://assets/images/main menu.png" id="1_fgkus"]
+[ext_resource type="Script" uid="uid://b4yufnhdfdy3l" path="res://scripts/title_screen.gd" id="1_s4lrb"]
+[ext_resource type="FontFile" uid="uid://bgyfdxw8fnhuf" path="res://assets/fonts/MonasDemoRegular-eZl86.ttf" id="2_sa3yf"]
+
+[node name="Control" type="Control" unique_id=2818038]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s4lrb")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=564992712]
+modulate = Color(0.36508796, 0.36508796, 0.36508796, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fgkus")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=694280433]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=924335545]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1106287415]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3466936, 0.55929714, 0, 1)
+theme_override_fonts/font = ExtResource("2_sa3yf")
+theme_override_font_sizes/font_size = 300
+text = "Mine Slave"
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=356862462]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_sa3yf")
+theme_override_font_sizes/font_size = 50
+text = "Clock In"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

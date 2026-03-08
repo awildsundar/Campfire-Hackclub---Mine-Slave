@@ -14,4 +14,5 @@ func interact(player: Player) -> void:
 	health_bar.value = health
 	if health <= 0.0:
 		player.ore += 1
+		player.ore_count_display.text = "Ores: " + str(player.ore)
 		queue_free()

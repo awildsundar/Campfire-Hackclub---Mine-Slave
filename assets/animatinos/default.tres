@@ -1,0 +1,19 @@
+[gd_resource type="AnimatedTexture" format=3 uid="uid://ivrem62aodba"]
+
+[ext_resource type="Texture2D" uid="uid://xb8oe60518s8" path="res://assets/images/AXE BET 1.png" id="1_mn6ey"]
+[ext_resource type="Texture2D" uid="uid://bj60ig35xtmfe" path="res://assets/images/AXEBET2.png" id="2_b00jg"]
+[ext_resource type="Texture2D" uid="uid://blqhf8kvfgkd0" path="res://assets/images/AXEBET3.png" id="3_56kc8"]
+[ext_resource type="Texture2D" uid="uid://0fuwq7flwga3" path="res://assets/images/AXEBET4.png" id="4_48pis"]
+
+[resource]
+frames = 4
+one_shot = true
+speed_scale = 5.0
+frame_0/texture = ExtResource("1_mn6ey")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("2_b00jg")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_56kc8")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_48pis")
+frame_3/duration = 1.0

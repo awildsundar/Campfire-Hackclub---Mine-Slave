@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="campfire hackclub"
-run/main_scene="uid://da1s62h6fvgxq"
+run/main_scene="uid://c2ceafx7ayamr"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 

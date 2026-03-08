@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cryvv5q26p6mw"]
+
+[ext_resource type="Script" uid="uid://qmg4dj1yrs7a" path="res://scripts/LevelManager.gd" id="1_qy8w0"]
+[ext_resource type="Script" uid="uid://cou22626iv2dq" path="res://cave generation/cave_gen.gd" id="2_0b6ju"]
+[ext_resource type="Texture2D" uid="uid://cgl5pfyus77f7" path="res://assets/images/Rock016_1K-PNG_Color.png" id="3_fen3g"]
+[ext_resource type="Texture2D" uid="uid://chhyrgytgw67g" path="res://assets/images/Rock016_1K-PNG_NormalGL.png" id="4_adcsl"]
+[ext_resource type="PackedScene" uid="uid://dn5tb7tnxo443" path="res://scenes/player.tscn" id="5_djkd0"]
+[ext_resource type="PackedScene" uid="uid://cc7p8vp1bkcy4" path="res://scenes/shop.tscn" id="6_8r7cc"]
+
+[sub_resource type="Environment" id="Environment_mw024"]
+background_mode = 1
+background_color = Color(0.036118213, 0.03688656, 0.09308814, 1)
+ambient_light_color = Color(0.3255144, 0.09576104, 0.267875, 1)
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw024"]
+albedo_color = Color(0.61640024, 0.5060346, 0.35528752, 1)
+albedo_texture = ExtResource("3_fen3g")
+normal_enabled = true
+normal_texture = ExtResource("4_adcsl")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.9012503
+uv1_world_triplanar = true
+
+[node name="LevelManager" type="Node3D" unique_id=637375403 node_paths=PackedStringArray("debuff_text", "debuff_display", "player", "cave_gen")]
+script = ExtResource("1_qy8w0")
+day_number = 5
+debuff_amount = 0.2
+debuff_text = NodePath("Control/VBoxContainer/DebuffText")
+debuff_display = NodePath("Control")
+debuff_text_time = 2.0
+quota = 1.0
+player = NodePath("Player")
+cave_gen = NodePath("CaveGenerator")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1129753164]
+environment = SubResource("Environment_mw024")
+
+[node name="CaveGenerator" type="CSGCombiner3D" parent="." unique_id=933628296 node_paths=PackedStringArray("shop", "player")]
+use_collision = true
+script = ExtResource("2_0b6ju")
+size = 50
+room_amount = 30
+min_room_size = 3
+max_room_size = 35
+mesh_resolution = 8
+cave_material = SubResource("StandardMaterial3D_mw024")
+ore_amount = 90
+shop = NodePath("../Shop")
+player = NodePath("../Player")
+metadata/_custom_type_script = "uid://cou22626iv2dq"
+
+[node name="Control" type="Control" parent="." unique_id=1009475024]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=725237732]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DebuffText" type="Label" parent="Control/VBoxContainer" unique_id=908705340]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "You feel..."
+horizontal_alignment = 1
+
+[node name="Player" parent="." unique_id=1006066165 instance=ExtResource("5_djkd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 37)
+
+[node name="Shop" parent="." unique_id=157714277 instance=ExtResource("6_8r7cc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -36)
